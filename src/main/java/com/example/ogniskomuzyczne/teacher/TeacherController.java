@@ -2,6 +2,7 @@ package com.example.ogniskomuzyczne.teacher;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @Tag(name = "Teachers API", description = "This API enables you to manage the teachers in the DB")
 @RequestMapping("/api/v1/teachers")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TeacherController {
     private final TeacherService teacherService;
 
