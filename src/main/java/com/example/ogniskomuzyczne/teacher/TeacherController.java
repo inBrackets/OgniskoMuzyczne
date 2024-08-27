@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Teachers API", description = "This API enables you to manage the teachers in the DB")
 @RequestMapping("/api/v1/teachers")
 public class TeacherController {
-    private TeacherService teacherService;
+    private final TeacherService teacherService;
 
     public TeacherController(TeacherService teacherService) {
         this.teacherService = teacherService;
