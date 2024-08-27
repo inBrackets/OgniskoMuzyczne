@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "./App.css";
-import ChallengeList from "./components/ChallengeList";
+import TeacherList from "./components/TeacherList";
 import AddTeacher from "./components/AddTeacher";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -17,7 +16,7 @@ function App() {
       const response = await axios.get("http://localhost:8080/api/v1/teachers");
       setTeachers(response.data);
     } catch (error) {
-      console.error("Error fetching challenges: ", error);
+      console.error("Error fetching teachers: ", error);
     }
   };
 
@@ -30,9 +29,9 @@ function App() {
   }
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-4">Monthly Challenges</h1>
+      <h1 className="text-center mb-4">Teachers List</h1>
       <AddTeacher onTeacherAdded={handleTeacherAdded}/>
-      <ChallengeList challenges={teachers} onTeacherDelete={handleTeacherAdded}/>
+      <TeacherList teachers={teachers} onTeacherDelete={handleTeacherAdded}/>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function AddTeacher({ onTeacherAdded }) {
       setName("");
       onTeacherAdded();
     } catch (error) {
-      console.error("Error adding challenge: ", error);
+      console.error("Error adding teacher: ", error);
     }
   };
 
@@ -29,7 +29,7 @@ function AddTeacher({ onTeacherAdded }) {
             <input
               type="text"
               className="form-control"
-              placeholder="e.g., January"
+              placeholder="e.g., Tom"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
