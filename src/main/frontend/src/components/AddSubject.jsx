@@ -1,25 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
 
-function AddTeacher({ onDataChange }) {
+function AddSubject({ onDataChange }) {
   const [name, setName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/teachers", {
+      await axios.post("http://localhost:8080/api/v1/subjects", {
         name,
       });
       setName("");
       onDataChange();
     } catch (error) {
-      console.error("Error adding teacher: ", error);
+      console.error("Error adding subject: ", error);
     }
   };
 
   return (
     <div className="card my-5">
-      <div className="card-header">Add new Teacher</div>
+      <div className="card-header">Add new Subject</div>
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -45,4 +45,4 @@ function AddTeacher({ onDataChange }) {
   );
 }
 
-export default AddTeacher;
+export default AddSubject;

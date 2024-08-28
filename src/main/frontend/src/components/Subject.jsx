@@ -1,14 +1,14 @@
 import axios from "axios";
 
-function Teacher({ element, onDataChange }) {
+function Subject({ element, fetchData }) {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete("http://localhost:8080/api/v1/teachers/" + element.id);
-      onDataChange();
+      await axios.delete("http://localhost:8080/api/v1/subjects/" + element.id);
+      fetchData();
     } catch (error) {
-      console.error("Error adding teacher: ", error);
+      console.error("Error adding subject: ", error);
     }
   };
 
@@ -27,4 +27,4 @@ function Teacher({ element, onDataChange }) {
   );
 }
 
-export default Teacher;
+export default Subject;
