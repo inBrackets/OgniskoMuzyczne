@@ -1,13 +1,12 @@
-import AddTeacher from "../components/AddTeacher";
-import GroupList from "../components/GroupList";
-import Teacher from "../components/Teacher";
+import AddTeacher from "../components/teacherComponents/AddTeacher";
+import TeachersList from "../components/teacherComponents/TeachersList";
 
 function TeachersPage({ teachers, onTeacherChange}) {
 return(
     <div className="container mt-5">
     <h1 className="text-center mb-4">Teachers List</h1>
     <AddTeacher onDataChange={onTeacherChange}/>
-    <GroupList data={teachers} onDataChange={onTeacherChange} ComponentType={Teacher}/>
+    <TeachersList data={teachers} onDataChange={onTeacherChange} />
   </div>
 );
 }

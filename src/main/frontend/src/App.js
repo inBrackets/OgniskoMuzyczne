@@ -1,6 +1,4 @@
 import "./App.css";
-import TeacherList from "./components/GroupList";
-import AddTeacher from "./components/AddTeacher";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";

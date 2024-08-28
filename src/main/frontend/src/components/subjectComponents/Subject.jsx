@@ -1,12 +1,12 @@
 import axios from "axios";
 
-function Subject({ element, fetchData }) {
+function Subject({ element, onDataChange }) {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.delete("http://localhost:8080/api/v1/subjects/" + element.id);
-      fetchData();
+      onDataChange();
     } catch (error) {
       console.error("Error adding subject: ", error);
     }
