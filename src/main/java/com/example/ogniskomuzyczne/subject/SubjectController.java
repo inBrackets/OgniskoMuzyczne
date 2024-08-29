@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "Subjects API", description = "This API enables you to manage the subjects in the DB")
 @RequestMapping("/api/v1/subjects")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"})
 public class SubjectController {
     private final SubjectService subjectService;
 
