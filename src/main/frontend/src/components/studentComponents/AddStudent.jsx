@@ -9,6 +9,7 @@ function AddStudent({ onDataChange }) {
     try {
       await axios.post("http://" + window.location.hostname + ":8080/api/v1/students", {
         name,
+        "septemberState": "NOT_APPLICABLE",
       });
       setName("");
       onDataChange();
