@@ -11,16 +11,17 @@ import TeachersPage from "./pages/TeachersPage";
 import SubjectsPage from "./pages/SubjectsPage";
 import Locations from "./pages/Locations";
 import StudentsPage from "./pages/StudentsPage";
+import StudentDetails from "./pages/StudentDetails";
 
 function App() {
 
-    // Step 1: Add state to control navbar collapse
-    const [expanded, setExpanded] = useState(false);
+  // Step 1: Add state to control navbar collapse
+  const [expanded, setExpanded] = useState(false);
 
-    // Step 2: Handle menu item clicks
-    const handleNavItemClick = () => {
-      setExpanded(false); // Collapse the navbar after a menu item is clicked
-    };
+  // Step 2: Handle menu item clicks
+  const handleNavItemClick = () => {
+    setExpanded(false); // Collapse the navbar after a menu item is clicked
+  };
 
 
 
@@ -68,14 +69,14 @@ function App() {
 
   return (
     <>
-    <Navbar expanded={expanded} expand="lg" className='fixed-top bg-body-tertiary shadow'>
-    <Container>
-      <Navbar.Brand>
-        <Link to="/" className='navbar-brand text-success fw-semibold'>
-        Ognisko Muzyczne
-        </Link>
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={() => setExpanded(expanded ? false : 'expanded')}/>
+      <Navbar expanded={expanded} expand="lg" className='fixed-top bg-body-tertiary shadow'>
+        <Container>
+          <Navbar.Brand>
+            <Link to="/" className='navbar-brand text-success fw-semibold'>
+              Ognisko Muzyczne
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={() => setExpanded(expanded ? false : 'expanded')} />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
               <Nav.Link href='/#/students' className='text-uppercase' onClick={handleNavItemClick}>Students</Nav.Link>
@@ -83,14 +84,15 @@ function App() {
               <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Subjects</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-    </Container>
-    </Navbar>
+        </Container>
+      </Navbar>
 
-    <Routes>
+      <Routes>
         <Route path='/' element={<Locations />} />
-        <Route path='/students' element={<StudentsPage students={students} onStudentChange={onStudentChange}/>} />
-        <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange}/>} />
-        <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange}/>} />
+        <Route path='/students' element={<StudentsPage students={students} onStudentChange={onStudentChange} />} />
+        <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange} />} />
+        <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />
+        <Route path='/student/:id' element={<StudentDetails />} />
       </Routes>
 
 

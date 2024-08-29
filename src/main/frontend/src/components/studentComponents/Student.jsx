@@ -19,7 +19,7 @@ function Student({ element, onDataChange }) {
 
   return (
     <a
-      href="#"
+      href={`#/student/${element.id}`}
       className="list-group-item list-group-item-action"
       aria-current="true"
     >
