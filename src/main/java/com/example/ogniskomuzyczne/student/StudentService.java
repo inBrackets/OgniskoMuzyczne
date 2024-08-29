@@ -2,6 +2,8 @@ package com.example.ogniskomuzyczne.student;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class StudentService {
 
@@ -16,12 +18,35 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public Student getStudentById(Long id) {
+        Optional<Student> teacher = studentRepository.findById(id);
+        return teacher.orElse(null);
+    }
+
     public Student addStudent(Student student) {
         if (student != null) {
             student.setId(nextId++);
             return studentRepository.save(student);
-        }
-        else throw new RuntimeException("Student object not valid!");
+        } else throw new RuntimeException("Student object not valid!");
     }
 
+    public boolean deleteStudent(Long id) {
+        Optional<Student> teacher = studentRepository.findById(id);
+        if (teacher.isPresent()) {
+            studentRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Student modifyStudent(Long id, Student newStudent) {
+        Optional<Student> teacher = studentRepository.findById(id);
+        if (teacher.isPresent()) {
+            Student updatedStudent = teacher.get();
+            updatedStudent.setName(newStudent.getName());
+            studentRepository.save(updatedStudent);
+            return updatedStudent;
+        }
+        return null;
+    }
 }
