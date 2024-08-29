@@ -63,7 +63,7 @@ function App() {
   }
 
   const onStudentChange = () => {
-    fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects", setSubjects);
+    fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects", setStudents);
   }
 
   return (
@@ -88,9 +88,9 @@ function App() {
 
     <Routes>
         <Route path='/' element={<Locations />} />
+        <Route path='/students' element={<StudentsPage students={students} onStudentChange={onStudentChange}/>} />
         <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange}/>} />
-        <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange}/>}  />
-        <Route path='/students' element={<StudentsPage students={students} onSubjectChange={onStudentChange}/>}  />
+        <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange}/>} />
       </Routes>
 
 
