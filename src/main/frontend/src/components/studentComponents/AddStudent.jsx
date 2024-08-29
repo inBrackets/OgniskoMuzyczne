@@ -10,6 +10,15 @@ function AddStudent({ onDataChange }) {
       await axios.post("http://" + window.location.hostname + ":8080/api/v1/students", {
         name,
         "septemberState": "NOT_APPLICABLE",
+        "octoberState": "NOT_APPLICABLE",
+        "novemberState": "NOT_APPLICABLE",
+        "decemberState": "NOT_APPLICABLE",
+        "januaryState": "NOT_APPLICABLE",
+        "februaryState": "NOT_APPLICABLE",
+        "marchState": "NOT_APPLICABLE",
+        "aprilState": "NOT_APPLICABLE",
+        "mayState": "NOT_APPLICABLE",
+        "juneState": "NOT_APPLICABLE",
       });
       setName("");
       onDataChange();
