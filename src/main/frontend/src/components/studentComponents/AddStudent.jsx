@@ -7,13 +7,13 @@ function AddStudent({ onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://" + window.location.hostname + ":8080/api/v1/subjects", {
+      await axios.post("http://" + window.location.hostname + ":8080/api/v1/students", {
         name,
       });
       setName("");
       onDataChange();
     } catch (error) {
-      console.error("Error adding subject: ", error);
+      console.error("Error adding student: ", error);
     }
   };
 

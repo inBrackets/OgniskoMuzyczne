@@ -63,7 +63,7 @@ function App() {
   }
 
   const onStudentChange = () => {
-    fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects", setStudents);
+    fetchData("http://" + window.location.hostname + ":8080/api/v1/students", setStudents);
   }
 
   return (
