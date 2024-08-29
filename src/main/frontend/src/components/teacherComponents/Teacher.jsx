@@ -8,7 +8,7 @@ function Teacher({ element, onDataChange }) {
       await axios.delete("http://" + window.location.hostname + ":8080/api/v1/teachers/" + element.id);
       onDataChange();
     } catch (error) {
-      console.error("Error adding teacher: ", error);
+      console.error("Error deleting teacher: ", error);
     }
   };
 

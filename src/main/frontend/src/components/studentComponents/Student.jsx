@@ -5,10 +5,10 @@ function Student({ element, onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete("http://" + window.location.hostname + ":8080/api/v1/subjects/" + element.id);
+      await axios.delete("http://" + window.location.hostname + ":8080/api/v1/students/" + element.id);
       onDataChange();
     } catch (error) {
-      console.error("Error adding subject: ", error);
+      console.error("Error deleting student: ", error);
     }
   };
 
