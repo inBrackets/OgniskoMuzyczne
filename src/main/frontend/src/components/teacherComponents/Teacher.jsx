@@ -5,7 +5,7 @@ function Teacher({ element, onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete("http://localhost:8080/api/v1/teachers/" + element.id);
+      await axios.delete("http://" + window.location.hostname + ":8080/api/v1/teachers/" + element.id);
       onDataChange();
     } catch (error) {
       console.error("Error adding teacher: ", error);

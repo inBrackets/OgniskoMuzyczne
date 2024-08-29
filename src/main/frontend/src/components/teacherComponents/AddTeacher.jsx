@@ -7,7 +7,7 @@ function AddTeacher({ onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/teachers", {
+      await axios.post("http://" + window.location.hostname + ":8080/api/v1/teachers", {
         name,
       });
       setName("");

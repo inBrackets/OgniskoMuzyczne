@@ -9,6 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Greeting from "./components/Greeting";
 import TeachersPage from "./pages/TeachersPage";
 import SubjectsPage from "./pages/SubjectsPage";
+import Locations from "./pages/Locations";
 
 function App() {
   const [teachers, setTeachers] = useState([
@@ -36,11 +37,11 @@ function App() {
   }, []);
 
   const onTeacherChange = () => {
-    fetchData("http://localhost:8080/api/v1/teachers", setTeachers);
+    fetchData("http://" + window.location.hostname + ":8080/api/v1/teachers", setTeachers);
   }
 
   const onSubjectChange = () => {
-    fetchData("http://localhost:8080/api/v1/subjects", setSubjects);
+    fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects", setSubjects);
   }
 
   return (
@@ -49,23 +50,23 @@ function App() {
     <Container>
       <Navbar.Brand>
         <Link to="/" className='navbar-brand text-success fw-semibold'>
-        React Restaurant
+        Ognisko Muzyczne
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
-              <Nav.Link href='/' className='active text-uppercase'></Nav.Link>
-              <Nav.Link href='/teachers' className='text-uppercase'>Teachers</Nav.Link>
-              <Nav.Link href='/subjects' className='text-uppercase'>Subjects</Nav.Link>
-              <Nav.Link href='/contact' className='text-uppercase'>Contact</Nav.Link>
+              <Nav.Link href='/#/' className='active text-uppercase'></Nav.Link>
+              <Nav.Link href='/#/teachers' className='text-uppercase'>Teachers</Nav.Link>
+              <Nav.Link href='/#/subjects' className='text-uppercase'>Subjects</Nav.Link>
+              <Nav.Link href='/#/contact' className='text-uppercase'>Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
     </Container>
     </Navbar>
 
     <Routes>
-        <Route path='/' element={<Greeting name="Sareh" message="cool" />} />
+        <Route path='/' element={<Locations />} />
         <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange}/>} />
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange}/>}  />
         <Route path='/contact' element={<Greeting name="Sareh" message="cool" />} />

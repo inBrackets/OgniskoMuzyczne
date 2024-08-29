@@ -7,7 +7,7 @@ function AddSubject({ onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/v1/subjects", {
+      await axios.post("http://" + window.location.hostname + ":8080/api/v1/subjects", {
         name,
       });
       setName("");
