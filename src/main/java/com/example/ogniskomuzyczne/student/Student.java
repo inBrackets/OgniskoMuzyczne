@@ -1,10 +1,18 @@
 package com.example.ogniskomuzyczne.student;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,28 +21,15 @@ import lombok.NoArgsConstructor;
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     String name;
+    @OneToMany(targetEntity=MonthSchedule.class,cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    List<MonthSchedule> monthSchedule = new ArrayList<>();
     String phoneNumber;
-    MonthState septemberState;
-    //BigDecimal septemberPrice;
-    MonthState octoberState;
-    //BigDecimal octoberPrice;
-    MonthState novemberState;
-    //BigDecimal novemberPrice;
-    MonthState decemberState;
-    //BigDecimal decemberPrice;
-    MonthState januaryState;
-    //BigDecimal januaryPrice;
-    MonthState februaryState;
-    //BigDecimal februaryPrice;
-    MonthState marchState;
-    //BigDecimal marchPrice;
-    MonthState aprilState;
-    //BigDecimal aprilPrice;
-    MonthState mayState;
-    //BigDecimal mayPrice;
-    MonthState juneState;
-    //BigDecimal junePrice;
+    public void addMonthSchedule(MonthSchedule monthSchedule) {
+        this.monthSchedule.add(monthSchedule);
+    }
 
 }
