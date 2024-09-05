@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -45,6 +46,15 @@ public class StudentController {
     @PutMapping("/{id}")
     private ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
         Student newStudent = studentService.modifyStudent(id, student);
+        if(newStudent != null) {
+            return new ResponseEntity<>(newStudent, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/{id}")
+    private ResponseEntity<Student> patchStudent(@PathVariable Long id, @RequestBody Student student) {
+        Student newStudent = studentService.patchStudent(id, student);
         if(newStudent != null) {
             return new ResponseEntity<>(newStudent, HttpStatus.OK);
         }

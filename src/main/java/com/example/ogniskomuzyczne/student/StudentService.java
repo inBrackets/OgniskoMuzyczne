@@ -28,15 +28,37 @@ public class StudentService {
 
     public Student addStudent(Student student) {
         if (student != null) {
-            for(String monthName: List.of("September", "October", "November", "December", "January", "February", "March", "April", "May", "June")) {
-                MonthSchedule monthSchedule = new MonthSchedule();
-                monthSchedule.setMonthName(monthName);
-                monthSchedule.setNumberOfLessons(0L);
-                monthSchedule.setPricePerLesson(new BigDecimal("65"));
-                monthSchedule.setMonthState(MonthState.NEUTRAL);
-                student.addMonthSchedule(monthSchedule);
+            MonthSchedule monthSchedule;
+            Student newStudent = new Student();
+            if (student.getName() == null) {
+                newStudent.setName("");
+            } else {
+                newStudent.setName(student.getName());
             }
-            return studentRepository.save(student);
+            if (student.getPhoneNumber() == null ) {
+                newStudent.setPhoneNumber("");
+            } else {
+                newStudent.setPhoneNumber(student.getPhoneNumber());
+            }
+            for (String monthName : List.of("September", "October", "November", "December", "January", "February", "March", "April", "May", "June")) {
+                if (student.getMonthSchedule().stream().anyMatch(x->x.getMonthName().equals(monthName))) {
+                    monthSchedule = student.getMonthSchedule().stream().filter(x -> x.getMonthName().equals(monthName)).findFirst().get();
+                    if(monthSchedule.getMonthState() == null) {
+                        monthSchedule.setMonthState(MonthState.NEUTRAL);
+                    }
+                    if(monthSchedule.getPricePerLesson() == null) {
+                        monthSchedule.setPricePerLesson(new BigDecimal("65"));
+                    }
+                } else {
+                    monthSchedule = new MonthSchedule();
+                    monthSchedule.setMonthName(monthName);
+                    monthSchedule.setNumberOfLessons(0L);
+                    monthSchedule.setPricePerLesson(new BigDecimal("65"));
+                    monthSchedule.setMonthState(MonthState.NEUTRAL);
+                }
+                newStudent.addMonthSchedule(monthSchedule);
+            }
+            return studentRepository.save(newStudent);
         } else throw new RuntimeException("Student object not valid!");
     }
 
@@ -54,6 +76,47 @@ public class StudentService {
         if (teacher.isPresent()) {
             Student updatedStudent = teacher.get();
             updatedStudent.setName(newStudent.getName());
+            studentRepository.save(updatedStudent);
+            return updatedStudent;
+        }
+        return null;
+    }
+
+    public Student patchStudent(Long id, Student newStudent) {
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            Student updatedStudent = student.get();
+            if (newStudent.getName() != null) {
+                updatedStudent.setName(newStudent.getName());
+            }
+            if (newStudent.getPhoneNumber() != null) {
+                updatedStudent.setPhoneNumber(newStudent.getPhoneNumber());
+            }
+            if (!newStudent.getMonthSchedule().isEmpty()) {
+                for (MonthSchedule monthSchedule : newStudent.getMonthSchedule()) {
+                    if (monthSchedule.getMonthState() != null) {
+                        updatedStudent.getMonthSchedule()
+                                .stream()
+                                .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
+                                .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
+                                .setMonthState(monthSchedule.getMonthState());
+                    }
+                    if (monthSchedule.getPricePerLesson() != null) {
+                        updatedStudent.getMonthSchedule()
+                                .stream()
+                                .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
+                                .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
+                                .setPricePerLesson(monthSchedule.getPricePerLesson());
+                    }
+                    if (monthSchedule.getNumberOfLessons() != 0) {
+                        updatedStudent.getMonthSchedule()
+                                .stream()
+                                .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
+                                .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
+                                .setNumberOfLessons(monthSchedule.getNumberOfLessons());
+                    }
+                }
+            }
             studentRepository.save(updatedStudent);
             return updatedStudent;
         }
