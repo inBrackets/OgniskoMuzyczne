@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Stack, Badge } from "react-bootstrap";
+import { Stack } from "react-bootstrap";
 import MonthStateBadge from "./studentsMonth/MonthStateBadge";
 function Student({ element, onDataChange }) {
   const handleSubmit = async (e) => {
@@ -7,9 +7,9 @@ function Student({ element, onDataChange }) {
     try {
       await axios.delete(
         "http://" +
-          window.location.hostname +
-          ":8080/api/v1/students/" +
-          element.id
+        window.location.hostname +
+        ":8080/api/v1/students/" +
+        element.id
       );
       onDataChange();
     } catch (error) {
@@ -28,38 +28,38 @@ function Student({ element, onDataChange }) {
         <button type="button" className="btn btn-danger mb-3 mt-2" onClick={handleSubmit}>
           Delete
         </button>
-         
+
       </div>
       <Stack direction="vertical" gap={2}>
         <Stack direction="horizontal" gap={2} className="d-flex flex-wrap">
-          <MonthStateBadge monthState={element.septemberState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "September").monthState}>
             September
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.octoberState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "October").monthState}>
             October
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.novemberState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "November").monthState}>
             November
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.decemberState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "December").monthState}>
             December
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.januaryState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "January").monthState}>
             January
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.februaryState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "February").monthState}>
             February
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.marchState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "March").monthState}>
             March
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.aprilState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "April").monthState}>
             April
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.mayState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "May").monthState}>
             May
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.juneState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "June").monthState}>
             June
           </MonthStateBadge>
         </Stack>

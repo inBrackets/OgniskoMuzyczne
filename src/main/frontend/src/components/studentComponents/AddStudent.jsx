@@ -3,24 +3,17 @@ import { useState } from "react";
 
 function AddStudent({ onDataChange }) {
   const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post("http://" + window.location.hostname + ":8080/api/v1/students", {
-        name,
-        "septemberState": "NOT_APPLICABLE",
-        "octoberState": "NOT_APPLICABLE",
-        "novemberState": "NOT_APPLICABLE",
-        "decemberState": "NOT_APPLICABLE",
-        "januaryState": "NOT_APPLICABLE",
-        "februaryState": "NOT_APPLICABLE",
-        "marchState": "NOT_APPLICABLE",
-        "aprilState": "NOT_APPLICABLE",
-        "mayState": "NOT_APPLICABLE",
-        "juneState": "NOT_APPLICABLE",
+        name, phoneNumber
+
       });
       setName("");
+      setPhoneNumber("");
       onDataChange();
     } catch (error) {
       console.error("Error adding student: ", error);
@@ -43,6 +36,20 @@ function AddStudent({ onDataChange }) {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Phone number
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="e.g., +48123456789"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
           </div>

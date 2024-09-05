@@ -1,13 +1,13 @@
 import { Badge } from "react-bootstrap"
 
 function MonthStateBadge({ children, monthState }) {
-    if (monthState ==="PAID") {
+    if (monthState === "PAID") {
         return <Badge bg="success">{children}</Badge>
     }
-    if (monthState ==="UNPAID") {
+    if (monthState === "UNPAID") {
         return <Badge bg="danger">{children}</Badge>
     }
-    if (monthState ==="NOT_APPLICABLE") {
+    if (monthState === "NEUTRAL") {
         return <Badge bg="secondary">{children}</Badge>
     }
     return (

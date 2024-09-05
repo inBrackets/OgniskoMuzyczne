@@ -80,13 +80,13 @@ function App() {
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
               <Nav.Link href='/#/students' className='text-uppercase' onClick={handleNavItemClick}>Students</Nav.Link>
-              <Nav.Link href='/#/teachers' className='text-uppercase' onClick={handleNavItemClick}>Teachers</Nav.Link>
-              <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Subjects</Nav.Link>
+              {/* <Nav.Link href='/#/teachers' className='text-uppercase' onClick={handleNavItemClick}>Teachers</Nav.Link> */}
+              {/* <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Subjects</Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
+      <div style={{ height: '50px' }}></div>
       <Routes>
         <Route path='/' element={<Locations />} />
         <Route path='/students' element={<StudentsPage students={students} onStudentChange={onStudentChange} />} />
