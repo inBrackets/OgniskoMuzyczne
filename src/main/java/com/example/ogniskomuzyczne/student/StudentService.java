@@ -46,16 +46,13 @@ public class StudentService {
                     if(monthSchedule.getMonthState() == null) {
                         monthSchedule.setMonthState(MonthState.NEUTRAL);
                     }
-                    if(monthSchedule.getPricePerLesson() == null) {
-                        monthSchedule.setPricePerLesson(new BigDecimal("65"));
-                    }
                 } else {
                     monthSchedule = new MonthSchedule();
                     monthSchedule.setMonthName(monthName);
                     monthSchedule.setNumberOfLessons(0L);
-                    monthSchedule.setPricePerLesson(new BigDecimal("65"));
                     monthSchedule.setMonthState(MonthState.NEUTRAL);
                 }
+                newStudent.setPricePerLesson(new BigDecimal(65));
                 newStudent.addMonthSchedule(monthSchedule);
             }
             return studentRepository.save(newStudent);
@@ -92,6 +89,9 @@ public class StudentService {
             if (newStudent.getPhoneNumber() != null) {
                 updatedStudent.setPhoneNumber(newStudent.getPhoneNumber());
             }
+            if (newStudent.getPricePerLesson() != null) {
+                updatedStudent.setPricePerLesson(newStudent.getPricePerLesson());
+            }
             if (!newStudent.getMonthSchedule().isEmpty()) {
                 for (MonthSchedule monthSchedule : newStudent.getMonthSchedule()) {
                     if (monthSchedule.getMonthState() != null) {
@@ -100,13 +100,6 @@ public class StudentService {
                                 .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
                                 .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
                                 .setMonthState(monthSchedule.getMonthState());
-                    }
-                    if (monthSchedule.getPricePerLesson() != null) {
-                        updatedStudent.getMonthSchedule()
-                                .stream()
-                                .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
-                                .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
-                                .setPricePerLesson(monthSchedule.getPricePerLesson());
                     }
                     if (monthSchedule.getNumberOfLessons() != 0) {
                         updatedStudent.getMonthSchedule()

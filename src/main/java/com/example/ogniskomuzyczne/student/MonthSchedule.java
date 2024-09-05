@@ -24,6 +24,4 @@ public class MonthSchedule {
     String monthName;
     MonthState monthState;
     long numberOfLessons;
-    BigDecimal pricePerLesson;
-
 }
