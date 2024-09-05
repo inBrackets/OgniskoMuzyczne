@@ -23,7 +23,7 @@ function StudentDetails() {
 
     useEffect(() => {
         onStudentChange();
-    });
+    }, [id]);
 
 
     const onStudentChange = () => {
@@ -56,6 +56,7 @@ function StudentDetails() {
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item><strong>Tel. </strong>{student.phoneNumber}</ListGroup.Item>
+                    <ListGroup.Item><strong>Price: </strong>{student.pricePerLesson} zł</ListGroup.Item>
                 </ListGroup>
             </Card>
             <Table striped bordered hover>
