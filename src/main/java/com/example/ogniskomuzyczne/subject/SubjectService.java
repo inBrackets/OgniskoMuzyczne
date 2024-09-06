@@ -1,17 +1,22 @@
 package com.example.ogniskomuzyczne.subject;
 
+import com.example.ogniskomuzyczne.student.Student;
+import com.example.ogniskomuzyczne.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
 public class SubjectService {
 
     SubjectRepository subjectRepository;
+    StudentRepository studentRepository;
     private Long nextId = 1L;
 
-    public SubjectService(SubjectRepository subjectRepository) {
+    public SubjectService(SubjectRepository subjectRepository, StudentRepository studentRepository) {
         this.subjectRepository = subjectRepository;
+        this.studentRepository = studentRepository;
     }
 
     public Iterable<Subject> getAllSubjects() {
@@ -25,7 +30,7 @@ public class SubjectService {
 
     public Subject addSubject(Subject subject) {
         if (subject != null) {
-            subject.setId(nextId++);
+            if (subject.getStudents() == null) subject.setStudents(new ArrayList<>());
             return subjectRepository.save(subject);
         } else throw new RuntimeException("Student object not valid!");
     }
@@ -40,13 +45,26 @@ public class SubjectService {
     }
 
     public Subject modifySubject(Long id, Subject newSubject) {
-        Optional<Subject> teacher = subjectRepository.findById(id);
-        if (teacher.isPresent()) {
-            Subject updatedSubject = teacher.get();
-            updatedSubject.setName(newSubject.getName());
+        Optional<Subject> subject = subjectRepository.findById(id);
+        if (subject.isPresent()) {
+            Subject updatedSubject = subject.get();
+            updatedSubject.setSubjectName(newSubject.getSubjectName());
+            updatedSubject.setTeacherName(newSubject.getTeacherName());
             subjectRepository.save(updatedSubject);
             return updatedSubject;
         }
         return null;
+    }
+
+    public Subject addStudentToSubject(Long id, Long studentId) {
+        Optional<Subject> subject = subjectRepository.findById(id);
+        Optional<Student> student = studentRepository.findById(studentId);
+        if(subject.isPresent() && student.isPresent()) {
+            Subject updatedSubject = subject.get();
+            updatedSubject.getStudents().add(student.get());
+            subjectRepository.save(updatedSubject);
+            return updatedSubject;
+        }
+        return  null;
     }
 }

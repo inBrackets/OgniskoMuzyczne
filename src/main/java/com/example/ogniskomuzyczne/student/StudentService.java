@@ -44,13 +44,13 @@ public class StudentService {
                 if (student.getMonthSchedule().stream().anyMatch(x->x.getMonthName().equals(monthName))) {
                     monthSchedule = student.getMonthSchedule().stream().filter(x -> x.getMonthName().equals(monthName)).findFirst().get();
                     if(monthSchedule.getMonthState() == null) {
-                        monthSchedule.setMonthState(MonthState.NEUTRAL);
+                        monthSchedule.setMonthState(MonthState.UNPAID);
                     }
                 } else {
                     monthSchedule = new MonthSchedule();
                     monthSchedule.setMonthName(monthName);
                     monthSchedule.setNumberOfLessons(0L);
-                    monthSchedule.setMonthState(MonthState.NEUTRAL);
+                    monthSchedule.setMonthState(MonthState.UNPAID);
                 }
                 newStudent.setPricePerLesson(new BigDecimal(65));
                 newStudent.addMonthSchedule(monthSchedule);
