@@ -33,7 +33,7 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                     {
                         "monthName": monthName,
                         "monthState": paymentStatus,
-                        "numberOfLessons": numberOfLessons
+                        "numberOfLessons": parseInt(numberOfLessons)
                     }
                 ]
             });
@@ -85,19 +85,6 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                                     UNPAID
                                 </label>
                             </div>
-                            <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    id="paymentStatusNEUTRAL"
-                                    value="NEUTRAL"
-                                    checked={paymentStatus === "NEUTRAL"}
-                                    onChange={(e) => setPaymentStatus(e.target.value)}
-                                />
-                                <label className="form-check-label" htmlFor="paymentStatusNEUTRAL">
-                                    NEUTRAL
-                                </label>
-                            </div>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -105,7 +92,7 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                             Number Of Lessons
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             placeholder="e.g., 4"
                             id="numberOfLessons"

@@ -101,13 +101,11 @@ public class StudentService {
                                 .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
                                 .setMonthState(monthSchedule.getMonthState());
                     }
-                    if (monthSchedule.getNumberOfLessons() != 0) {
-                        updatedStudent.getMonthSchedule()
-                                .stream()
-                                .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
-                                .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
-                                .setNumberOfLessons(monthSchedule.getNumberOfLessons());
-                    }
+                    updatedStudent.getMonthSchedule()
+                            .stream()
+                            .filter(x -> x.getMonthName().equals(monthSchedule.getMonthName()))
+                            .findFirst().orElseThrow(() -> new RuntimeException("The month is missing!"))
+                            .setNumberOfLessons(monthSchedule.getNumberOfLessons());
                 }
             }
             studentRepository.save(updatedStudent);

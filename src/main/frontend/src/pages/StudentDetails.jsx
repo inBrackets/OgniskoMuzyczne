@@ -5,7 +5,7 @@ import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
 import MonthStateBadge from "../components/studentComponents/studentsMonth/MonthStateBadge";
 import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
 
-function StudentDetails({updateStudents}) {
+function StudentDetails({ updateStudents }) {
     const { id } = useParams();
 
     const [show, setShow] = useState(false);
@@ -62,7 +62,7 @@ function StudentDetails({updateStudents}) {
 
     return (
         <>
-            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} student={student} monthName={selectedMonthName} studentId={id}/>
+            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} student={student} monthName={selectedMonthName} studentId={id} />
             <Card>
                 <Card.Body>
                     <Card.Title>{student.name}</Card.Title>
@@ -118,6 +118,10 @@ function StudentDetails({updateStudents}) {
         if (monthState === "NEUTRAL") variant = "secondary";
         if (monthState === "PAID") variant = "success";
         if (monthState === "UNPAID") variant = "danger";
+        if (getNumberOfLessons(student, monthName) === 0) {
+            variant = "secondary";
+            monthState = "NO LESSONS"
+        }
         return (
             <Button variant={variant} onClick={() => handleShow(monthName)}>{monthState}</Button>
         )

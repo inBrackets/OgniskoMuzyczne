@@ -25,46 +25,46 @@ function Student({ element, onDataChange }) {
     >
       <div className="d-flex w-100 justify-content-between">
         <h5 className="mb-1 mt-2 ms-1">{element.name}</h5>
-        <button type="button" className="btn btn-danger mb-3 mt-2" onClick={handleSubmit}>
+        {/* <button type="button" className="btn btn-danger mb-3 mt-2" onClick={handleSubmit}>
           Delete
-        </button>
+        </button> */}
 
       </div>
       <Stack direction="vertical" gap={2}>
         <Stack direction="horizontal" gap={2} className="d-flex flex-wrap">
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "September").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "September")}>
             September
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "October").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "October")}>
             October
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "November").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "November")}>
             November
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "December").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "December")}>
             December
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "January").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "January")}>
             January
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "February").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "February")}>
             February
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "March").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "March")}>
             March
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "April").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "April")}>
             April
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "May").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "May")}>
             May
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "June").monthState}>
+          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "June")}>
             June
           </MonthStateBadge>
         </Stack>
       </Stack>
-      <p className="mb-1">{element.id}</p>
+      {/* <p className="mb-1">{element.id}</p> */}
     </a>
   );
 }
