@@ -9,9 +9,13 @@ function StudentDetails() {
     const { id } = useParams();
 
     const [show, setShow] = useState(false);
+    const [selectedMonthName, setSelectedMonthName] = useState(null);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = (monthName) => {
+        setSelectedMonthName(monthName);
+        setShow(true);
+    };
 
 
     const [student, setStudent] = useState([
@@ -57,7 +61,7 @@ function StudentDetails() {
 
     return (
         <>
-            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} />
+            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} student={student} monthName={selectedMonthName} />
             <Card>
                 <Card.Body>
                     <Card.Title>{student.name}</Card.Title>
@@ -77,16 +81,16 @@ function StudentDetails() {
                     </tr>
                 </thead>
                 <tbody>
-                    <RowForStudentDetails name={"September"} />
-                    <RowForStudentDetails name={"October"} />
-                    <RowForStudentDetails name={"November"} />
-                    <RowForStudentDetails name={"December"} />
-                    <RowForStudentDetails name={"January"} />
-                    <RowForStudentDetails name={"February"} />
-                    <RowForStudentDetails name={"March"} />
-                    <RowForStudentDetails name={"April"} />
-                    <RowForStudentDetails name={"May"} />
-                    <RowForStudentDetails name={"June"} />
+                    <RowForStudentDetails monthName={"September"} />
+                    <RowForStudentDetails monthName={"October"} />
+                    <RowForStudentDetails monthName={"November"} />
+                    <RowForStudentDetails monthName={"December"} />
+                    <RowForStudentDetails monthName={"January"} />
+                    <RowForStudentDetails monthName={"February"} />
+                    <RowForStudentDetails monthName={"March"} />
+                    <RowForStudentDetails monthName={"April"} />
+                    <RowForStudentDetails monthName={"May"} />
+                    <RowForStudentDetails monthName={"June"} />
 
                 </tbody>
             </Table>
@@ -94,15 +98,15 @@ function StudentDetails() {
         </>
     )
 
-    function RowForStudentDetails({ name }) {
+    function RowForStudentDetails({ monthName }) {
         return (
             <tr>
-                <td>{name}</td>
-                <td><PaymentStatusButton onClick={handleShow} monthName={name} monthState={getPaymentStatus(student, name)}>
-                    {getPaymentStatus(student, name)}
+                <td>{monthName}</td>
+                <td><PaymentStatusButton monthName={monthName} monthState={getPaymentStatus(student, monthName)}>
+                    {getPaymentStatus(student, monthName)}
                 </PaymentStatusButton></td>
-                <td>{getNumberOfLessons(student, name)}</td>
-                <td>{getPricePerMonth(student, name)}</td>
+                <td>{getNumberOfLessons(student, monthName)}</td>
+                <td>{getPricePerMonth(student, monthName)}</td>
             </tr>
         )
     }
@@ -114,7 +118,7 @@ function StudentDetails() {
         if (monthState === "PAID") variant = "success";
         if (monthState === "UNPAID") variant = "danger";
         return (
-            <Button variant={variant} onClick={handleShow}>{monthState}</Button>
+            <Button variant={variant} onClick={() => handleShow(monthName)}>{monthState}</Button>
         )
     }
 }
