@@ -32,34 +32,34 @@ function Student({ element, onDataChange }) {
       </div>
       <Stack direction="vertical" gap={2}>
         <Stack direction="horizontal" gap={2} className="d-flex flex-wrap">
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "September")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "September")}>
             September
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "October")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "October")}>
             October
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "November")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "November")}>
             November
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "December")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "December")}>
             December
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "January")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "January")}>
             January
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "February")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "February")}>
             February
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "March")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "March")}>
             March
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "April")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "April")}>
             April
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "May")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "May")}>
             May
           </MonthStateBadge>
-          <MonthStateBadge monthState={element.monthSchedule.find(schedule => schedule.monthName === "June")}>
+          <MonthStateBadge monthSchedule={element.monthSchedule.find(schedule => schedule.monthName === "June")}>
             June
           </MonthStateBadge>
         </Stack>

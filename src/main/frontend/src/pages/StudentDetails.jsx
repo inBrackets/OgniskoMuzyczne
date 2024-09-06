@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
-import MonthStateBadge from "../components/studentComponents/studentsMonth/MonthStateBadge";
 import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
 
 function StudentDetails({ updateStudents }) {

@@ -1,14 +1,14 @@
 import { Badge, Button } from "react-bootstrap"
 
-function MonthStateBadge({ children, monthState }) {
-    if (monthState.numberOfLessons === 0) {
-        return <Badge bg="secondary">{children}</Badge>
+function MonthStateBadge({ children, monthSchedule }) {
+    if (monthSchedule.numberOfLessons === 0) {
+        return <button type="button" class="btn btn-secondary btn-sm p-1">{children}</button>
     }
-    if (monthState.monthState === "PAID") {
-        return <Badge bg="success">{children}</Badge>
+    if (monthSchedule.monthState === "PAID") {
+        return <button type="button" class="btn btn-success btn-sm p-1">{children}</button>
     }
-    if (monthState.monthState === "UNPAID") {
-        return <Badge bg="danger">{children}</Badge>
+    if (monthSchedule.monthState === "UNPAID") {
+        return <button type="button" class="btn btn-danger btn-sm p-1">{children}</button>
     }
     return (
         <div>{children}</div>
