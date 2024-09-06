@@ -1,4 +1,4 @@
-import { Badge } from "react-bootstrap"
+import { Badge, Button } from "react-bootstrap"
 
 function MonthStateBadge({ children, monthState }) {
     if (monthState === "PAID") {
@@ -8,7 +8,7 @@ function MonthStateBadge({ children, monthState }) {
         return <Badge bg="danger">{children}</Badge>
     }
     if (monthState === "NEUTRAL") {
-        return <Badge bg="secondary">{children}</Badge>
+        return <Button bg="secondary">{children}</Button>
     }
     return (
         <div>{children}</div>

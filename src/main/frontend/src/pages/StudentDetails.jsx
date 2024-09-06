@@ -1,11 +1,18 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Table, Card, ListGroup } from "react-bootstrap";
+import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
 import MonthStateBadge from "../components/studentComponents/studentsMonth/MonthStateBadge";
+import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
 
 function StudentDetails() {
     const { id } = useParams();
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     const [student, setStudent] = useState([
         // { id: 1, month: "January", description: "First challenge description" },
@@ -50,6 +57,7 @@ function StudentDetails() {
 
     return (
         <>
+            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} />
             <Card>
                 <Card.Body>
                     <Card.Title>{student.name}</Card.Title>
@@ -90,12 +98,23 @@ function StudentDetails() {
         return (
             <tr>
                 <td>{name}</td>
-                <td><MonthStateBadge monthState={getPaymentStatus(student, name)}>
+                <td><PaymentStatusButton onClick={handleShow} monthName={name} monthState={getPaymentStatus(student, name)}>
                     {getPaymentStatus(student, name)}
-                </MonthStateBadge></td>
+                </PaymentStatusButton></td>
                 <td>{getNumberOfLessons(student, name)}</td>
                 <td>{getPricePerMonth(student, name)}</td>
             </tr>
+        )
+    }
+
+    function PaymentStatusButton({ monthName }) {
+        var monthState = getPaymentStatus(student, monthName);
+        var variant = "danger";
+        if (monthState === "NEUTRAL") variant = "secondary";
+        if (monthState === "PAID") variant = "success";
+        if (monthState === "UNPAID") variant = "danger";
+        return (
+            <Button variant={variant} onClick={handleShow}>{monthState}</Button>
         )
     }
 }
