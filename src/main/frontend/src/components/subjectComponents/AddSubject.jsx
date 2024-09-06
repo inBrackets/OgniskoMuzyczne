@@ -11,7 +11,7 @@ function AddSubject({ onDataChange }) {
     e.preventDefault();
     try {
       await axios.post("http://" + window.location.hostname + ":8080/api/v1/subjects", {
-        subjectName, teacherName
+        subjectName, teacherName, subjectPrice
       });
       setTeacherName("");
       setSubjectName("");
