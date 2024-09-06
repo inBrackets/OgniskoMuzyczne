@@ -52,7 +52,6 @@ public class StudentService {
                     monthSchedule.setNumberOfLessons(0L);
                     monthSchedule.setMonthState(MonthState.UNPAID);
                 }
-                newStudent.setPricePerLesson(new BigDecimal(65));
                 newStudent.addMonthSchedule(monthSchedule);
             }
             return studentRepository.save(newStudent);
@@ -88,9 +87,6 @@ public class StudentService {
             }
             if (newStudent.getPhoneNumber() != null) {
                 updatedStudent.setPhoneNumber(newStudent.getPhoneNumber());
-            }
-            if (newStudent.getPricePerLesson() != null) {
-                updatedStudent.setPricePerLesson(newStudent.getPricePerLesson());
             }
             if (!newStudent.getMonthSchedule().isEmpty()) {
                 for (MonthSchedule monthSchedule : newStudent.getMonthSchedule()) {
