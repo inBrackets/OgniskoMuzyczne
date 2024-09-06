@@ -93,7 +93,7 @@ function App() {
         <Route path='/students' element={<StudentsPage students={students} onStudentChange={onStudentChange} />} />
         <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange} />} />
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />
-        <Route path='/student/:id' element={<StudentDetails />} />
+        <Route path='/student/:id' element={<StudentDetails updateStudents={onStudentChange} /> } />
       </Routes>
 
 

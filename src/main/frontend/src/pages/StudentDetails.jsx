@@ -5,7 +5,7 @@ import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
 import MonthStateBadge from "../components/studentComponents/studentsMonth/MonthStateBadge";
 import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
 
-function StudentDetails() {
+function StudentDetails({updateStudents}) {
     const { id } = useParams();
 
     const [show, setShow] = useState(false);
@@ -39,6 +39,7 @@ function StudentDetails() {
 
     const onStudentChange = () => {
         fetchData("http://" + window.location.hostname + ":8080/api/v1/students/" + id, setStudent);
+        updateStudents();
     }
 
     const getPaymentStatus = (studentData, monthName) => {
