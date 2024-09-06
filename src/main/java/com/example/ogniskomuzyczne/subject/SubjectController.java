@@ -35,6 +35,11 @@ public class SubjectController {
         return new ResponseEntity<>(subjectService.getAllSubjects(), HttpStatus.OK);
     }
 
+    @GetMapping("/byStudentId/{id}")
+    private ResponseEntity<Subject> getSubjectByStudentId(@PathVariable Long id) {
+        return new ResponseEntity<>(subjectService.getSubjectByStudentId(id), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     private ResponseEntity<Subject> getSubjectsById(@PathVariable Long id) {
         if(subjectService.getSubjectById(id) != null) {

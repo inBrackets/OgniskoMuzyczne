@@ -5,6 +5,7 @@ import com.example.ogniskomuzyczne.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,5 +67,15 @@ public class SubjectService {
             return updatedSubject;
         }
         return  null;
+    }
+
+    public Subject getSubjectByStudentId(Long id) {
+        Iterable<Subject> allSubjects = getAllSubjects();
+        for (Subject subject: allSubjects) {
+            for (Student student: subject.getStudents()) {
+                if (student.getId() == id) return subject;
+            }
+        }
+        return null;
     }
 }
