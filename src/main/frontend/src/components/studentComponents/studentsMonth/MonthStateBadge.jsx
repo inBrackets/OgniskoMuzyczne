@@ -8,7 +8,7 @@ function MonthStateBadge({ children, monthState }) {
         return <Badge bg="danger">{children}</Badge>
     }
     if (monthState === "NEUTRAL") {
-        return <Button bg="secondary">{children}</Button>
+        return <Badge bg="secondary">{children}</Badge>
     }
     return (
         <div>{children}</div>
