@@ -3,13 +3,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 
-function UpdateMonthModal({ show, onHide, onDataChange, monthName }) {
+function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) {
     const [paymentStatus, setPaymentStatus] = useState("");
     const [numberOfLessons, setNumberOfLessons] = useState("");
 
     const fetchStudentData = async () => {
         try {
-            const response = await axios.get("http://" + window.location.hostname + ":8080/api/v1/students/1");
+            const response = await axios.get("http://" + window.location.hostname + ":8080/api/v1/students/" + studentId);
             const studentData = response.data;
             const schedule = studentData.monthSchedule.find(schedule => schedule.monthName === monthName);
             setPaymentStatus(schedule.monthState);
@@ -27,7 +27,7 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.patch("http://" + window.location.hostname + ":8080/api/v1/students/1", {
+            await axios.patch("http://" + window.location.hostname + ":8080/api/v1/students/" + studentId, {
 
                 "monthSchedule": [
                     {

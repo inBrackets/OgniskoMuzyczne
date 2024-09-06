@@ -61,7 +61,7 @@ function StudentDetails() {
 
     return (
         <>
-            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} student={student} monthName={selectedMonthName} />
+            <UpdateMonthModal show={show} onHide={handleClose} onDataChange={onStudentChange} student={student} monthName={selectedMonthName} studentId={id}/>
             <Card>
                 <Card.Body>
                     <Card.Title>{student.name}</Card.Title>
