@@ -81,7 +81,7 @@ function App() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={() => setExpanded(expanded ? false : 'expanded')} />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
-              <Nav.Link href='/#/students' className='text-uppercase' onClick={handleNavItemClick}>Add Students</Nav.Link>
+              <Nav.Link href='/#/' className='text-uppercase' onClick={handleNavItemClick}>All Students</Nav.Link>
               {/* <Nav.Link href='/#/teachers' className='text-uppercase' onClick={handleNavItemClick}>Teachers</Nav.Link> */}
               <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Subjects</Nav.Link>
             </Nav>
@@ -96,7 +96,7 @@ function App() {
         <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange} />} />
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />
         <Route path='/student/:id' element={<StudentDetails updateStudents={onStudentChange} />} />
-        <Route path='/subject/:id' element={<SubjectDetails updateStudents={onStudentChange} />} />
+        <Route path='/subject/:id' element={<SubjectDetails updateSubjects={onSubjectChange} />} />
       </Routes>
 
 

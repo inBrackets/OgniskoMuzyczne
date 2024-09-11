@@ -1,16 +1,23 @@
-import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import AddStudent from "../components/studentComponents/AddStudent";
+import StudentsList from "../components/studentComponents/StudentsList";
+import axios from "axios";
 import { Card, ListGroup } from "react-bootstrap";
 
-function SubjectDetails({ updateStudents }) {
+function SubjectDetails({updateSubjects}) {
     const { id } = useParams();
-
 
     const [subject, setSubject] = useState([
         // { id: 1, month: "January", description: "First challenge description" },
         // { id: 2, month: "February", description: "Second challenge description" },
     ]);
+
+    const [students, setStudents] = useState([
+        // { id: 1, month: "January", description: "First challenge description" },
+        // { id: 2, month: "February", description: "Second challenge description" },
+    ]);
+
 
     const fetchData = async (url, setter) => {
         try {
@@ -22,29 +29,30 @@ function SubjectDetails({ updateStudents }) {
     };
 
     useEffect(() => {
-        onStudentChange();
+        onSubjectIdChange();
     }, [id]);
 
 
-    const onStudentChange = () => {
+    const onSubjectIdChange = () => {
         fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects/" + id, setSubject);
-        updateStudents();
+        fetchData("http://" + window.location.hostname + ":8080/api/v1/students/getBySubjectId/" + id, setStudents);
+        updateSubjects();
     }
 
     return (
-        <>
-            <Card>
-                <Card.Body>
-                    <Card.Title>{subject.subjectName}</Card.Title>
-                </Card.Body>
-                <ListGroup className="list-group-flush">
-                    <ListGroup.Item><strong>Teacher: </strong>{subject.teacherName}</ListGroup.Item>
-                    <ListGroup.Item><strong>Price: </strong>{subject.subjectPrice} zł</ListGroup.Item>
+        <div className="container mt-5">
+            <Card className="mb-5">
+                <Card.Title className="m-3">Wpłaty Uczniów Rok Szkolny 2024/2025</Card.Title>
+                <ListGroup className="list-group-flush" >
+                    <ListGroup.Item><strong>Imię i nazwisko instruktora: </strong>{subject.teacherName}</ListGroup.Item>
+                    <ListGroup.Item><strong>Przedmiot: </strong>{subject.subjectName}</ListGroup.Item>
+                    <ListGroup.Item><strong>Cena: </strong>{subject.subjectPrice} zł</ListGroup.Item>
                 </ListGroup>
             </Card>
-            <div>The student id is {id}</div>
-        </>
-    )
+            <StudentsList data={students} onDataChange={onSubjectIdChange} />
+            <AddStudent onDataChange={onSubjectIdChange} subjectId={id} />
+        </div>
+    );
 }
 
 

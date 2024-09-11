@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 
-function AddStudent({ onDataChange }) {
+function AddStudent({ onDataChange, subjectId }) {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://" + window.location.hostname + ":8080/api/v1/students", {
+      const url = subjectId
+        ? `http://${window.location.hostname}:8080/api/v1/students/withSubjectId/${subjectId}`
+        : `http://${window.location.hostname}:8080/api/v1/students`;
+      await axios.post(url, {
         name, phoneNumber
 
       });

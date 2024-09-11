@@ -6,8 +6,8 @@ function SubjectsPage({ subjects, onSubjectChange}) {
 return(
     <div className="container mt-5">
     <h1 className="text-center mb-4">Subjects List</h1>
-    <AddSubject onDataChange={onSubjectChange}/>
     <SubjectsList data={subjects} onDataChange={onSubjectChange}/>
+    <AddSubject onDataChange={onSubjectChange} />
   </div>
 );
 }
