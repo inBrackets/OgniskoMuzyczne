@@ -10,7 +10,7 @@ import Greeting from "./components/Greeting";
 import TeachersPage from "./pages/TeachersPage";
 import SubjectsPage from "./pages/SubjectsPage";
 import Locations from "./pages/Locations";
-import StudentsPage from "./pages/StudentsPage";
+import AllStudentsPage from "./pages/AllStudentsPage";
 import StudentDetails from "./pages/StudentDetails";
 import AddStudentsPage from "./pages/AddStudentsPage";
 import SubjectDetails from "./pages/SubjectDetails";
@@ -91,7 +91,7 @@ function App() {
       <div style={{ height: '50px' }}></div>
       <Routes>
         {/* <Route path='/' element={<Locations />} /> */}
-        <Route path='/' element={<StudentsPage students={students} onStudentChange={onStudentChange} />} />
+        <Route path='/' element={<AllStudentsPage students={students} onStudentChange={onStudentChange} />} />
         <Route path='/students' element={<AddStudentsPage students={students} onStudentChange={onStudentChange} />} />
         <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange} />} />
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />

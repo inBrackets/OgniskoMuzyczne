@@ -1,7 +1,7 @@
 import AddStudent from "../components/studentComponents/AddStudent";
 import StudentsList from "../components/studentComponents/StudentsList";
 
-function StudentsPage({ students, onStudentChange }) {
+function AllStudentsPage({ students, onStudentChange }) {
   return (
     <div className="container mt-5">
       <h1 className="text-center mb-4">Students List</h1>
@@ -11,4 +11,4 @@ function StudentsPage({ students, onStudentChange }) {
   );
 }
 
-export default StudentsPage;
+export default AllStudentsPage;
