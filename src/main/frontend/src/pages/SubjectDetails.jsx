@@ -4,6 +4,7 @@ import AddStudent from "../components/studentComponents/AddStudent";
 import StudentsList from "../components/studentComponents/StudentsList";
 import axios from "axios";
 import { Card, ListGroup } from "react-bootstrap";
+import { translate } from "../utils/Translate";
 
 function SubjectDetails({updateSubjects}) {
     const { id } = useParams();
@@ -42,11 +43,11 @@ function SubjectDetails({updateSubjects}) {
     return (
         <div className="container mt-5">
             <Card className="mb-5">
-                <Card.Title className="m-3">Wpłaty Uczniów Rok Szkolny 2024/2025</Card.Title>
+                <Card.Title className="m-3">{translate("Payments for year 2024/2025")}</Card.Title>
                 <ListGroup className="list-group-flush" >
-                    <ListGroup.Item><strong>Imię i nazwisko instruktora: </strong>{subject.teacherName}</ListGroup.Item>
-                    <ListGroup.Item><strong>Przedmiot: </strong>{subject.subjectName}</ListGroup.Item>
-                    <ListGroup.Item><strong>Cena: </strong>{subject.subjectPrice} zł</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Teacher name: ")}</strong>{subject.teacherName}</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Subject: ")}</strong>{subject.subjectName}</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Price: ")}</strong>{subject.subjectPrice} zł</ListGroup.Item>
                 </ListGroup>
             </Card>
             <StudentsList data={students} onDataChange={onSubjectIdChange} />

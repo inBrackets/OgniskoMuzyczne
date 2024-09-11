@@ -2,6 +2,7 @@ import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { translateState, translate, translateMonth } from "../../../utils/Translate";
 
 function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) {
     const [paymentStatus, setPaymentStatus] = useState("");
@@ -48,14 +49,14 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
     return (
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading for {monthName}</Modal.Title>
+                <Modal.Title>{translate("Change payment status for ")} {translateMonth(monthName)}</Modal.Title>
             </Modal.Header>
             <form onSubmit={handleSubmit}></form>
             <Modal.Body>
                 <form onSubmit={handleSubmit} id="modalForm">
                     <div className="mb-3">
                         <label htmlFor="paymentStatus" className="form-label">
-                            Payment Status
+                            {translate("Payment Status")}
                         </label>
                         <div>
                             <div className="form-check">
@@ -69,7 +70,7 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                                     required
                                 />
                                 <label className="form-check-label" htmlFor="paymentStatusPAID">
-                                    PAID
+                                    {translateState("PAID")}
                                 </label>
                             </div>
                             <div className="form-check">
@@ -82,14 +83,14 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                                     onChange={(e) => setPaymentStatus(e.target.value)}
                                 />
                                 <label className="form-check-label" htmlFor="paymentStatusUNPAID">
-                                    UNPAID
+                                    {translateState("UNPAID")}
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">
-                            Number Of Lessons
+                            {translate("Number Of Lessons")}
                         </label>
                         <input
                             type="number"
@@ -105,10 +106,10 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onHide}>
-                    Close
+                    {translate("Close")}
                 </Button>
                 <Button variant="primary" onClick={onHide} type="submit" form="modalForm">
-                    Save Changes
+                    {translate("Save Changes")}
                 </Button>
             </Modal.Footer>
         </Modal>

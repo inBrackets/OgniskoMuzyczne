@@ -7,12 +7,10 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Greeting from "./components/Greeting";
-import TeachersPage from "./pages/TeachersPage";
 import SubjectsPage from "./pages/SubjectsPage";
 import Locations from "./pages/Locations";
 import AllStudentsPage from "./pages/AllStudentsPage";
 import StudentDetails from "./pages/StudentDetails";
-import AddStudentsPage from "./pages/AddStudentsPage";
 import SubjectDetails from "./pages/SubjectDetails";
 
 function App() {
@@ -52,14 +50,9 @@ function App() {
   };
 
   useEffect(() => {
-    onTeacherChange();
     onSubjectChange();
     onStudentChange();
   }, []);
-
-  const onTeacherChange = () => {
-    fetchData("http://" + window.location.hostname + ":8080/api/v1/teachers", setTeachers);
-  }
 
   const onSubjectChange = () => {
     fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects", setSubjects);
@@ -81,9 +74,9 @@ function App() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={() => setExpanded(expanded ? false : 'expanded')} />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto justify-content-end w-100'>
-              <Nav.Link href='/#/' className='text-uppercase' onClick={handleNavItemClick}>All Students</Nav.Link>
+              <Nav.Link href='/#/' className='text-uppercase' onClick={handleNavItemClick}>Wszyscy uczniowie</Nav.Link>
               {/* <Nav.Link href='/#/teachers' className='text-uppercase' onClick={handleNavItemClick}>Teachers</Nav.Link> */}
-              <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Subjects</Nav.Link>
+              <Nav.Link href='/#/subjects' className='text-uppercase' onClick={handleNavItemClick}>Przedmioty</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -92,8 +85,6 @@ function App() {
       <Routes>
         {/* <Route path='/' element={<Locations />} /> */}
         <Route path='/' element={<AllStudentsPage students={students} onStudentChange={onStudentChange} />} />
-        <Route path='/students' element={<AddStudentsPage students={students} onStudentChange={onStudentChange} />} />
-        <Route path='/teachers' element={<TeachersPage teachers={teachers} onTeacherChange={onTeacherChange} />} />
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />
         <Route path='/student/:id' element={<StudentDetails updateStudents={onStudentChange} />} />
         <Route path='/subject/:id' element={<SubjectDetails updateSubjects={onSubjectChange} />} />

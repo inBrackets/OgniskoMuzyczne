@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { translate } from "../../utils/Translate";
 
 function AddStudent({ onDataChange, subjectId }) {
   const [name, setName] = useState("");
@@ -25,17 +26,17 @@ function AddStudent({ onDataChange, subjectId }) {
 
   return (
     <div className="card my-5">
-      <div className="card-header">Add new Student</div>
+      <div className="card-header">{translate("Add a student")}</div>
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Name
+              {translate("Students name")}
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="e.g., Tom"
+              placeholder=""
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -44,12 +45,12 @@ function AddStudent({ onDataChange, subjectId }) {
           </div>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Phone number
+              {translate("Contact")}
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="e.g., +48123456789"
+              placeholder=""
               id="phoneNumber"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -57,7 +58,7 @@ function AddStudent({ onDataChange, subjectId }) {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            {translate("Submit")}
           </button>
         </form>
       </div>

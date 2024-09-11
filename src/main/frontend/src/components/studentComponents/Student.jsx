@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Stack } from "react-bootstrap";
 import MonthStateBadge from "./studentsMonth/MonthStateBadge";
+import { translateMonth } from "../../utils/Translate";
 function Student({ element, onDataChange }) {
   const handleSubmit = async (e) => {
     e.preventDefault();

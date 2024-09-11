@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
 import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
+import { translateMonth, translateState, translate } from "../utils/Translate";
 
 function StudentDetails({ updateStudents }) {
     const { id } = useParams();
@@ -74,19 +75,19 @@ function StudentDetails({ updateStudents }) {
                     <Card.Title>{student.name}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                    <ListGroup.Item><strong>Tel. </strong>{student.phoneNumber}</ListGroup.Item>
-                    <ListGroup.Item><strong>Price: </strong>{subject.subjectPrice} zł</ListGroup.Item>
-                    <ListGroup.Item><strong>Teacher: </strong>{subject.teacherName}</ListGroup.Item>
-                    <ListGroup.Item><strong>Subject: </strong>{subject.subjectName}</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Contact: ")}</strong>{student.phoneNumber}</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Price: ")}</strong>{subject.subjectPrice} zł</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Teacher name: ")}</strong>{subject.teacherName}</ListGroup.Item>
+                    <ListGroup.Item><strong>{translate("Subject: ")}</strong>{subject.subjectName}</ListGroup.Item>
                 </ListGroup>
             </Card>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Month</th>
-                        <th>Payment Status</th>
-                        <th>Number of Lessons</th>
-                        <th>To Pay</th>
+                        <th>{translate("Month")}</th>
+                        <th>{translate("Payment Status")}</th>
+                        <th>{translate("Number of Lessons")}</th>
+                        <th>{translate("To Pay")}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -110,7 +111,7 @@ function StudentDetails({ updateStudents }) {
     function RowForStudentDetails({ monthName }) {
         return (
             <tr>
-                <td>{monthName}</td>
+                <td>{translateMonth(monthName)}</td>
                 <td><PaymentStatusButton monthName={monthName} monthState={getPaymentStatus(student, monthName)}>
                     {getPaymentStatus(student, monthName)}
                 </PaymentStatusButton></td>
@@ -128,10 +129,10 @@ function StudentDetails({ updateStudents }) {
         if (monthState === "UNPAID") variant = "danger";
         if (getNumberOfLessons(student, monthName) === 0) {
             variant = "secondary";
-            monthState = "NO LESSONS"
+            monthState = "BRAK ZAJĘĆ"
         }
         return (
-            <Button variant={variant} onClick={() => handleShow(monthName)}>{monthState}</Button>
+            <Button variant={variant} onClick={() => handleShow(monthName)}>{translateState(monthState)}</Button>
         )
     }
 }

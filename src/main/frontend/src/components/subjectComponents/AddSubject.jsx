@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { translate } from "../../utils/Translate";
 
 function AddSubject({ onDataChange }) {
   const [subjectName, setSubjectName] = useState("");
@@ -24,17 +25,17 @@ function AddSubject({ onDataChange }) {
 
   return (
     <div className="card my-5">
-      <div className="card-header">Add new Subject</div>
+      <div className="card-header">{translate("Add new Subject")}</div>
       <div className="card-body">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Subject Name
+              {translate("Subject: ")}
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="e.g., Trombone"
+              placeholder=""
               id="subjectName"
               value={subjectName}
               onChange={(e) => setSubjectName(e.target.value)}
@@ -43,12 +44,12 @@ function AddSubject({ onDataChange }) {
           </div>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Teacher's Name
+              {translate("Teacher name: ")}
             </label>
             <input
               type="text"
               className="form-control"
-              placeholder="e.g., Tom"
+              placeholder=""
               id="teacherName"
               value={teacherName}
               onChange={(e) => setTeacherName(e.target.value)}
@@ -57,12 +58,12 @@ function AddSubject({ onDataChange }) {
           </div>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Subject price
+              {translate("Price: ")}
             </label>
             <input
               type="number"
               className="form-control"
-              placeholder="e.g., Tom"
+              placeholder=""
               id="subjectPrice"
               value={subjectPrice}
               onChange={(e) => setSubjectPrice(e.target.value)}
@@ -70,7 +71,7 @@ function AddSubject({ onDataChange }) {
             />
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            {translate("Submit")}
           </button>
         </form>
       </div>
