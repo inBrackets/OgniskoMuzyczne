@@ -30,6 +30,11 @@ public class StudentController {
         return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED);
     }
 
+    @PostMapping("/withSubjectId/{id}")
+    private ResponseEntity<Student> addStudentWithSubjectId(@PathVariable Long id, @RequestBody Student student) {
+        return new ResponseEntity<>(studentService.addStudentWithSubjectId(id, student), HttpStatus.CREATED);
+    }
+
     @GetMapping
     private ResponseEntity<Iterable<Student>> getAllStudents() {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
@@ -41,6 +46,11 @@ public class StudentController {
             return new ResponseEntity<>(studentService.getStudentById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/getBySubjectId/{id}")
+    private ResponseEntity<Iterable<Student>> getStudentsBySubjectId(@PathVariable Long id) {
+        return new ResponseEntity<>(studentService.getStudentsBySubjectId(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

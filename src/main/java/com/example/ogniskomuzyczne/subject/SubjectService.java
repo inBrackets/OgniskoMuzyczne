@@ -25,8 +25,8 @@ public class SubjectService {
     }
 
     public Subject getSubjectById(Long id) {
-        Optional<Subject> teacher = subjectRepository.findById(id);
-        return teacher.orElse(null);
+        Optional<Subject> subject = subjectRepository.findById(id);
+        return subject.orElse(null);
     }
 
     public Subject addSubject(Subject subject) {

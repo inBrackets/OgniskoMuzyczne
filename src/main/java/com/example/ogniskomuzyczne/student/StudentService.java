@@ -1,8 +1,9 @@
 package com.example.ogniskomuzyczne.student;
 
+import com.example.ogniskomuzyczne.subject.Subject;
+import com.example.ogniskomuzyczne.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,11 +11,15 @@ import java.util.Optional;
 public class StudentService {
 
     StudentRepository studentRepository;
+    SubjectRepository subjectRepository;
     MonthScheduleService monthScheduleService;
 
-    public StudentService(StudentRepository studentRepository, MonthScheduleService monthScheduleService) {
+    public StudentService(StudentRepository studentRepository,
+                          MonthScheduleService monthScheduleService,
+                          SubjectRepository subjectRepository) {
         this.studentRepository = studentRepository;
         this.monthScheduleService = monthScheduleService;
+        this.subjectRepository = subjectRepository;
     }
 
     public Iterable<Student> getAllStudents() {
@@ -22,8 +27,13 @@ public class StudentService {
     }
 
     public Student getStudentById(Long id) {
-        Optional<Student> teacher = studentRepository.findById(id);
-        return teacher.orElse(null);
+        Optional<Student> student = studentRepository.findById(id);
+        return student.orElse(null);
+    }
+
+    public Iterable<Student> getStudentsBySubjectId(Long id) {
+        Subject subject = subjectRepository.findById(id).orElse(null);
+        return subject.getStudents();
     }
 
     public Student addStudent(Student student) {
@@ -68,9 +78,9 @@ public class StudentService {
     }
 
     public Student modifyStudent(Long id, Student newStudent) {
-        Optional<Student> teacher = studentRepository.findById(id);
-        if (teacher.isPresent()) {
-            Student updatedStudent = teacher.get();
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            Student updatedStudent = student.get();
             updatedStudent.setName(newStudent.getName());
             studentRepository.save(updatedStudent);
             return updatedStudent;
@@ -108,5 +118,26 @@ public class StudentService {
             return updatedStudent;
         }
         return null;
+    }
+
+    public Student addStudentWithSubjectId(Long subjectId, Student student) {
+        long studentId = addStudent(student).getId();
+        addStudentToSubject(subjectId, studentId);
+        return studentRepository.findById(studentId).orElse(null);
+    }
+
+    /**
+     * Copy from SubjectService
+     */
+    public Subject addStudentToSubject(Long id, Long studentId) {
+        Optional<Subject> subject = subjectRepository.findById(id);
+        Optional<Student> student = studentRepository.findById(studentId);
+        if(subject.isPresent() && student.isPresent()) {
+            Subject updatedSubject = subject.get();
+            updatedSubject.getStudents().add(student.get());
+            subjectRepository.save(updatedSubject);
+            return updatedSubject;
+        }
+        return  null;
     }
 }
