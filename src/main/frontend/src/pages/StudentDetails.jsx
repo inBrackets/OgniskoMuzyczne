@@ -22,6 +22,12 @@ function StudentDetails({ updateStudents }) {
         // { id: 2, month: "February", description: "Second challenge description" },
     ]);
 
+    const [subject, setSubject] = useState([
+        // { id: 1, month: "January", description: "First challenge description" },
+        // { id: 2, month: "February", description: "Second challenge description" },
+    ]);
+
+
     const fetchData = async (url, setter) => {
         try {
             const response = await axios.get(url);
@@ -38,6 +44,7 @@ function StudentDetails({ updateStudents }) {
 
     const onStudentChange = () => {
         fetchData("http://" + window.location.hostname + ":8080/api/v1/students/" + id, setStudent);
+        fetchData("http://" + window.location.hostname + ":8080/api/v1/subjects/byStudentId/" + id, setSubject);
         updateStudents();
     }
 
@@ -56,7 +63,7 @@ function StudentDetails({ updateStudents }) {
     const getPricePerMonth = (studentData, monthName) => {
         if (!studentData || !studentData.monthSchedule) return "N/A";
         const targetMonthSchedule = studentData.monthSchedule.find(schedule => schedule.monthName === monthName);
-        return targetMonthSchedule ? targetMonthSchedule.numberOfLessons * student.pricePerLesson : "N/A";
+        return targetMonthSchedule ? targetMonthSchedule.numberOfLessons * subject.subjectPrice : "N/A";
     }
 
     return (
@@ -68,7 +75,9 @@ function StudentDetails({ updateStudents }) {
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item><strong>Tel. </strong>{student.phoneNumber}</ListGroup.Item>
-                    <ListGroup.Item><strong>Price: </strong>{student.pricePerLesson} zł</ListGroup.Item>
+                    <ListGroup.Item><strong>Price: </strong>{subject.subjectPrice} zł</ListGroup.Item>
+                    <ListGroup.Item><strong>Teacher: </strong>{subject.teacherName}</ListGroup.Item>
+                    <ListGroup.Item><strong>Subject: </strong>{subject.subjectName}</ListGroup.Item>
                 </ListGroup>
             </Card>
             <Table striped bordered hover>
