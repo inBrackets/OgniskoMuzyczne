@@ -12,6 +12,7 @@ import Locations from "./pages/Locations";
 import AllStudentsPage from "./pages/AllStudentsPage";
 import StudentDetails from "./pages/StudentDetails";
 import SubjectDetails from "./pages/SubjectDetails";
+import IPScanner from "./pages/IPScanner";
 
 function App() {
 
@@ -88,6 +89,7 @@ function App() {
         <Route path='/subjects' element={<SubjectsPage subjects={subjects} onSubjectChange={onSubjectChange} />} />
         <Route path='/student/:id' element={<StudentDetails updateStudents={onStudentChange} />} />
         <Route path='/subject/:id' element={<SubjectDetails updateSubjects={onSubjectChange} />} />
+        <Route path='/ip' element={<IPScanner/>} />
       </Routes>
 
 
