@@ -90,7 +90,7 @@ function UpdateMonthModal({ show, onHide, onDataChange, monthName, studentId }) 
                     </div>
                     <div className="mb-3">
                         <label htmlFor="name" className="form-label">
-                            {translate("Number Of Lessons")}
+                            {translate("Number of Lessons")}
                         </label>
                         <input
                             type="number"
