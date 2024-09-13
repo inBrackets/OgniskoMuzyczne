@@ -47,7 +47,6 @@ export function translate(phrase) {
         "Add a student": 'Dodaj ucznia',
         "To Pay": 'Do zapłaty',
         "Change payment status for ": 'Zmień status zapłaty za ',
-        "Close": 'Zamknij',
         "Save Changes": 'Zapisz zmiany',
         "Subject name": 'Nazwa przedmiotu',
     };
