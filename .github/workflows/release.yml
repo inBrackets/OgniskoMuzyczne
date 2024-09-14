@@ -72,6 +72,13 @@ jobs:
           echo "Artifact ID: ${{ env.artifactId }}"
           echo "Version: ${{ env.version }}"
 
+      - name: get-pom-version
+        id: pom-version
+        uses: PERES-Richard/maven-get-version-action@v3.0.0
+
+      - name: Print Maven POM project version
+        run: echo "version = ${{ steps.pom-version.outputs.version }}"
+
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
