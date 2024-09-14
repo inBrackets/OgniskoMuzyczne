@@ -7,6 +7,8 @@ on:
 
 jobs:
   build:
+    env:
+      REPO_NAME: ${{ github.event.repository.name }}
     permissions: write-all
     runs-on: ubuntu-latest
 
@@ -15,14 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+
+
       # Extract project name and tag name
       - name: Extract Project Name and Tag Name
         id: extract_info
         run: |
-          project_name=${{GITHUB_REPOSITORY##*/}}
-          tag_name=${{GITHUB_REF#refs/tags/}}
-          echo "project_name=$project_name" >> $GITHUB_ENV
-          echo "tag_name=$tag_name" >> $GITHUB_ENV
+          echo "tag_name=$env.REPO_NAME" >> $GITHUB_ENV
 
       # Set up JDK 17
       - name: Set up JDK 17
