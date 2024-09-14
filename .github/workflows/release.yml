@@ -23,7 +23,7 @@ jobs:
       - name: Extract Project Name and Tag Name
         id: extract_info
         run: |
-          echo "tag_name=$env.REPO_NAME" >> $GITHUB_ENV
+          echo "tag_name=$REPO_NAME" >> $GITHUB_ENV
 
       # Set up JDK 17
       - name: Set up JDK 17
