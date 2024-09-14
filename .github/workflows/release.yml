@@ -53,6 +53,21 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -e
 
+      - name: Get Version
+        uses: ./
+        id: getVersion
+      - name: Print the version
+        run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
+
+
+      - name: get-pom-version
+        id: pom-version
+        uses: PERES-Richard/maven-get-version-action@v3.0.0
+
+      - name: Print Maven POM project version
+        run: echo "version = ${{ steps.pom-version.outputs.version }}"
+          echo "artifactId = ${{ steps.pom-version.outputs.artifactId }}"
+
       # Install xmllint
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
@@ -71,13 +86,6 @@ jobs:
         run: |
           echo "Artifact ID: ${{ env.artifactId }}"
           echo "Version: ${{ env.version }}"
-
-      - name: get-pom-version
-        id: pom-version
-        uses: PERES-Richard/maven-get-version-action@v3.0.0
-
-      - name: Print Maven POM project version
-        run: echo "version = ${{ steps.pom-version.outputs.version }}"
 
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
