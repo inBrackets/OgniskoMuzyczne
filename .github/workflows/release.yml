@@ -66,6 +66,12 @@ jobs:
           echo "artifactId=$artifactId" >> $GITHUB_ENV
           echo "version=$version" >> $GITHUB_ENV
 
+      # Debug extracted values
+      - name: Debug extracted values
+        run: |
+          echo "Artifact ID: ${{ env.artifactId }}"
+          echo "Version: ${{ env.version }}"
+
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
@@ -73,8 +79,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}  # Correct tag name
-          release_name: Release ${{ github.ref_name }}  # Optional, can be customized
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
           draft: false
           prerelease: true
 
