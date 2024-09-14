@@ -19,8 +19,8 @@ jobs:
       - name: Extract Project Name and Tag Name
         id: extract_info
         run: |
-          project_name=${GITHUB_REPOSITORY##*/}
-          tag_name=${GITHUB_REF#refs/tags/}
+          project_name=${{GITHUB_REPOSITORY##*/}}
+          tag_name=${{GITHUB_REF#refs/tags/}}
           echo "project_name=$project_name" >> $GITHUB_ENV
           echo "tag_name=$tag_name" >> $GITHUB_ENV
 
