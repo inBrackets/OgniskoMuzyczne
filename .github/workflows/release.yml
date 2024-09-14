@@ -53,12 +53,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -e
 
-      - name: Get Version
-        uses: ./pom.xml
-        id: getVersion
-      - name: Print the version
-        run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
-
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
