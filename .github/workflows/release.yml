@@ -59,34 +59,6 @@ jobs:
       - name: Print the version
         run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
 
-
-      - name: get-pom-version
-        id: pom-version
-        uses: PERES-Richard/maven-get-version-action@v3.0.0
-
-      - name: Print Maven POM project version
-        run: echo "version = ${{ steps.pom-version.outputs.version }}"
-          echo "artifactId = ${{ steps.pom-version.outputs.artifactId }}"
-
-      # Install xmllint
-      - name: Install xmllint
-        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
-
-      # Extract artifactId and version from pom.xml
-      - name: Extract artifactId and version
-        id: extract_info
-        run: |
-          artifactId=$(xmllint --xpath "string(//project/artifactId)" pom.xml)
-          version=$(xmllint --xpath "string(//project/version)" pom.xml)
-          echo "artifactId=$artifactId" >> $GITHUB_ENV
-          echo "version=$version" >> $GITHUB_ENV
-
-      # Debug extracted values
-      - name: Debug extracted values
-        run: |
-          echo "Artifact ID: ${{ env.artifactId }}"
-          echo "Version: ${{ env.version }}"
-
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
@@ -106,6 +78,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/${{ env.artifactId }}-${{ env.version }}.jar
-          asset_name: ${{ env.artifactId }}-${{ env.version }}.jar
+          asset_path: target/OgniskoMuzyczne-0.0.5-SNAPSHOT.jar
+          asset_name: OgniskoMuzyczna-0.0.5-SNAPSHOT.jar
           asset_content_type: application/java-archive
