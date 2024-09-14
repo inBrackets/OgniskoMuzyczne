@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Stack } from "react-bootstrap";
 import MonthStateBadge from "./studentsMonth/MonthStateBadge";
 function Student({ element }) {
