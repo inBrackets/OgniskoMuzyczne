@@ -6,9 +6,7 @@ import { Link, Routes, Route } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Greeting from "./components/Greeting";
 import SubjectsPage from "./pages/SubjectsPage";
-import Locations from "./pages/Locations";
 import AllStudentsPage from "./pages/AllStudentsPage";
 import StudentDetails from "./pages/StudentDetails";
 import SubjectDetails from "./pages/SubjectDetails";
@@ -23,13 +21,6 @@ function App() {
   const handleNavItemClick = () => {
     setExpanded(false); // Collapse the navbar after a menu item is clicked
   };
-
-
-
-  const [teachers, setTeachers] = useState([
-    // { id: 1, month: "January", description: "First challenge description" },
-    // { id: 2, month: "February", description: "Second challenge description" },
-  ]);
 
   const [subjects, setSubjects] = useState([
     // { id: 1, month: "January", description: "First challenge description" },

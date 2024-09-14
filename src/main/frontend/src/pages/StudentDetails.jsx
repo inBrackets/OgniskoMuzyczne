@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Table, Card, ListGroup, Modal, Button } from "react-bootstrap";
+import { Table, Card, ListGroup, Button } from "react-bootstrap";
 import UpdateMonthModal from "../components/studentComponents/studentsMonth/UpdateMonthModal";
 import { translateMonth, translateState, translate } from "../utils/Translate";
 

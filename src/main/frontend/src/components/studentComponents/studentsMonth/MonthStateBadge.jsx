@@ -1,4 +1,3 @@
-import { Badge, Button } from "react-bootstrap"
 import { translateMonth } from "../../../utils/Translate"
 
 function MonthStateBadge({ children, monthSchedule }) {
