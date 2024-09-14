@@ -25,14 +25,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # or whichever version your project requires
+          node-version: '16'
 
       # Navigate to the frontend directory and install npm dependencies
       - name: Install npm dependencies
         working-directory: src/main/frontend
         run: npm install
 
-      # Build the React app (skip linting by modifying the build command)
+      # Build the React app
       - name: Build React App
         working-directory: src/main/frontend
         run: npm run build
@@ -52,15 +52,15 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -e
 
-      # Create a GitHub release for the tag and upload the JAR
+      # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}  # Correct tag name
+          release_name: Release ${{ github.ref_name }}  # Optional, can be customized
           draft: false
           prerelease: false
 
