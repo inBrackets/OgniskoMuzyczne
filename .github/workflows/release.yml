@@ -54,7 +54,7 @@ jobs:
         run: mvn clean package -e
 
       - name: Get Version
-        uses: ./
+        uses: ./pom.xml
         id: getVersion
       - name: Print the version
         run: echo "The version we just got is ${{ steps.getVersion.outputs.version }}"
