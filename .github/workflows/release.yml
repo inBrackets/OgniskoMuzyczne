@@ -55,14 +55,14 @@ jobs:
       # Create GitHub release for the tag and upload the JAR
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref_name }}  # Correct tag name
           release_name: Release ${{ github.ref_name }}  # Optional, can be customized
           draft: false
-          prerelease: false
+          prerelease: true
 
       # Upload the JAR file to the release
       - name: Upload JAR to release
